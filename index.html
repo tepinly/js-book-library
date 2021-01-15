@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="#">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="insertion">
+                <label for="name">Book Name: </label><input type="text" name="name" id="name" class="field" size="25" required /><br />
+                <label for="author">Author: </label><input type="text" name="author" id="author" class="field" size="25" required /><br />
+                <label for="description">Description: </label><br /><textarea name="description" id="description" rows="3" cols="30" class="field" required></textarea><br />
+                <label for="pages">Pages: </label><input type="number" name="pages" id="pages" class="field" size="25" required /><br />
+                <input type="checkbox" name="read" id="read" class="field" /><label for="read">Read</label><br />
+                <button style="background-color:lightseagreen; color: white;" type="submit" style="margin-top: 20px" name="submit" value="submit" onclick="addBook(document.getElementById('name').value, document.getElementById('author').value, document.getElementById('description').value, document.getElementById('pages').value, document.getElementById('read').checked)">
+                    Insert Book
+                </button>
+                <p id="error"></p>
+        </div>
+        <div class="content">
+            <button onclick="displayBooks()" style="background-color:seagreen; color:white;">Dispaly Books</button>
+            <div id="display"></div>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>

@@ -20,10 +20,11 @@
                 <button style="background-color:lightseagreen; color: white;" type="submit" style="margin-top: 20px" name="submit" value="submit" onclick="addBook(document.getElementById('name').value, document.getElementById('author').value, document.getElementById('description').value, document.getElementById('pages').value, document.getElementById('read').checked)">
                     Insert Book
                 </button>
+                <div id='alrt'></div>
                 <p id="error"></p>
         </div>
         <div class="content">
-            <button onclick="displayBooks()" style="background-color:seagreen; color:white;">Dispaly Books</button>
+            <button id="disp-btn" onclick="toggleButton()" class="disp-on">Dispaly Books</button>
             <div id="display"></div>
         </div>
     </div>

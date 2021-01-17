@@ -27,7 +27,7 @@ input {
 
 button {
     border: 0;
-    border-radius: 2px;
+    border-radius: 1px;
     background-color: white;
     padding: 5px 10px;
     cursor: pointer;
@@ -40,4 +40,22 @@ button {
 .array button {
     background-color: brown;
     color: white ;
+}
+
+.disp-on {
+    background-color:seagreen;
+    color:white;
+    transition: ease-in all .2s;
+}
+
+.disp-off {
+    background-color: brown;
+    color: white;
+    transition: ease-in all .2s;
+}
+
+#alrt {
+    margin-top: 20px;
+    color: gold;
+
 }

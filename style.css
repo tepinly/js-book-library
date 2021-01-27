@@ -33,6 +33,12 @@ button {
     cursor: pointer;
 }
 
+.btn-read {
+    background-color: seagreen !important;
+    color: white !important;
+    margin: 0 20px;
+}
+
 #error {
     color: salmon;
 }
@@ -57,5 +63,8 @@ button {
 #alrt {
     margin-top: 20px;
     color: gold;
+}
 
+.local {
+    margin-top: 20px;
 }

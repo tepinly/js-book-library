@@ -66,5 +66,13 @@ button {
 }
 
 .local {
+    margin-top: 40px;
+}
+
+#object {
+    color: white !important;
+}
+
+.firebase {
     margin-top: 20px;
 }

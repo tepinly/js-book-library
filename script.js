@@ -26,10 +26,7 @@ function addBook(name, author, description, pages, read) {
             displayBooks();
         }
 
-        document.getElementById('alrt').innerHTML = 'Book has been inserted';
-        setTimeout(function () {
-            document.getElementById('alrt').innerHTML = '';
-        }, 3000);
+        alrt('Book has been inserted');
     }
 }
 
@@ -56,6 +53,14 @@ function displayBooks() {
         '<br>Pages: ' + x.pages + '<br>Completion: ' + (x.read ? 'Read' : 'Not read yet') + '<button type="submit" class="btn-read" onclick="bookRead()">Toggle</button)' + '</p><button type=\"submit\" onclick=\"deleteBook(' + library.indexOf(x) + ')\">Delete</button></div>').join('');
 
     document.getElementById('display').innerHTML = books;
+
+    var element = document.getElementById('disp-btn');
+    if (element.className == "disp-on") {
+        element.innerHTML = "Hide Books";
+        element.classList.toggle('disp-off');
+    }
+
+    return 0;
 }
 
 function hideBooks() {
@@ -68,17 +73,19 @@ function hideBooks() {
     document.getElementById('display').innerHTML = "";
 }
 
-function saveBook() {
+function saveBooks() {
     if (storageAvailable('localStorage')) {
         localStorage.setItem('library', JSON.stringify(library));
+        alrt('Saved locally');
     } else {
-        document.getElementById('alrt').innerHTML = 'Error: Could not store library locally';
+        alrt('Error: Could not store library locally');
     }
 }
 
 function loadBooks() {
     library = JSON.parse(localStorage.getItem('library'));
-    hideBooks();
+    displayBooks();
+    alrt('Local loaded');   
     console.log(library);
 }
 
@@ -96,6 +103,27 @@ function storageAvailable(type) {
                 e.code === 1014 ||
                 e.name === 'QuotaExceededError' ||
                 e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
-                (storage && storage.length !== 0);
+            (storage && storage.length !== 0);
     }
+}
+
+function saveFB() {
+    firebase.database().ref('/').set({
+        library
+    });
+    alrt('Saved to cloud');
+}
+
+function alrt(message) {
+    document.getElementById('alrt').innerHTML = message;
+    setTimeout(() => document.getElementById('alrt').innerHTML = '', 2000);
+}
+
+function loadFB() {
+    const dbRefObject = firebase.database().ref().child('library');
+    dbRefObject.on('value', snap => library = snap.val());
+    setTimeout(() => {
+        displayBooks();
+        alrt('Cloud loaded');
+    }, 700);
 }
